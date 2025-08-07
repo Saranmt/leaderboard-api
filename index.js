@@ -3,7 +3,6 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// In-memory leaderboard (clears when server restarts)
 let scores = [];
 
 app.use(cors());
@@ -20,9 +19,7 @@ app.post('/submit', (req, res) => {
 });
 
 app.get('/leaderboard', (req, res) => {
-  const topScores = scores
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 10);
+  const topScores = scores.sort((a, b) => b.score - a.score).slice(0, 10);
   res.json(topScores);
 });
 
